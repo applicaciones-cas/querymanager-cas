@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="700.0" prefWidth="1024.0" stylesheets="@../styles/CenterScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="85.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="acTiltleBar" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="-70.0" layoutY="-62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="3.0">
+                           <image>
+                              <Image url="@../images/GFx.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="44.0" layoutY="4.0" text="Guanzon Query Manager on" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="4.0" />
+                        <Label fx:id="lblIpAddress" layoutX="198.0" layoutY="4.0" text="192.168.10.240" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="4.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Button fx:id="btnMinimize" layoutX="934.0" mnemonicParsing="false" AnchorPane.rightAnchor="58.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="MINUS" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Minimize" />
+                           </tooltip>
+                        </Button>
+                        <ToggleButton fx:id="btnRestoreDown" layoutX="935.0" mnemonicParsing="false" AnchorPane.rightAnchor="28.0">
+                           <graphic>
+                              <FontAwesomeIconView fx:id="faCompress" glyphName="COMPRESS" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="tpRestore" text="Restore Down" />
+                           </tooltip>
+                        </ToggleButton>
+                        <Button fx:id="btnClose" mnemonicParsing="false" AnchorPane.rightAnchor="0.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TIMES" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Close" />
+                           </tooltip>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <MenuBar prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                              <MenuItem fx:id="mnuOpen" mnemonicParsing="false" text="Open">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="FOLDER_OPEN_ALT" size="14" />
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="mnuNewEditor" mnemonicParsing="false" text="New Query Editor">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="FILE_TEXT" size="14" />
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="mnuCloseTab" mnemonicParsing="false" text="Close Current Tab">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CLOSE" size="14" />
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="mnuSave" mnemonicParsing="false" text="Save">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="FLOPPY_ALT" size="14" />
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="mnuSaveAs" mnemonicParsing="false" text="Save As">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="PAINT_BRUSH" size="14" />
+                                 </graphic></MenuItem>
+                          <MenuItem fx:id="mnuExit" mnemonicParsing="false" text="Exit">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="TIMES_CIRCLE" size="14" />
+                                 </graphic></MenuItem>
+                        </items>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FOLDER_OPEN" size="15" />
+                           </graphic>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="EDIT" size="15" />
+                           </graphic>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="Tools">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Preferences">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="GEAR" size="14" />
+                                 </graphic></MenuItem>
+                              <MenuItem mnemonicParsing="false" text="Themes">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="PAINT_BRUSH" size="14" />
+                                 </graphic>
+                              </MenuItem>
+                          </items>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="GEARS" size="15" />
+                           </graphic>
+                        </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem fx:id="mnuAbout" mnemonicParsing="false" text="About">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="HOME" size="14" />
+                                 </graphic></MenuItem>
+                        </items>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="QUESTION_CIRCLE" size="15" />
+                           </graphic>
+                      </Menu>
+                    </menus>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </MenuBar>
+                  <HBox layoutY="54.0" prefHeight="36.0" prefWidth="1024.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                     <children>
+                        <ToggleButton fx:id="btnToggle" minWidth="37.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fx:id="faToggle" glyphName="TOGGLE_ON" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip fx:id="tpSideMenu" text="Hide Left Menu" />
+                           </tooltip>
+                        </ToggleButton>
+                        <Button fx:id="btnDatabase" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="DATABASE" size="24" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Show Database" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnNewEditor" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FILE_TEXT_ALT" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="New Text Editor" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnExcecute" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PLAY" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Execute current query" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnClear" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="UNDO" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Clear" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnClearCurrent" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TIMES_CIRCLE" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Clear Current Text Editor" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnUser" mnemonicParsing="false">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="USER_PLUS" size="24" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="New User" />
+                           </tooltip>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding></HBox>
+                  <AnchorPane layoutY="86.0" prefHeight="2.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
+                     <children>
+                        <Separator prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <SplitPane fx:id="splPane" dividerPositions="0.19863013698630136" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="605.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <SplitPane fx:id="splHorizontal" dividerPositions="0.7871" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TreeView fx:id="treeView" prefHeight="96.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane fx:id="acHorizontal" minHeight="0.0" minWidth="0.0" prefHeight="34.0" prefWidth="205.0">
+                                 <children>
+                                    <Label fx:id="lblTime" alignment="CENTER" prefHeight="79.0" prefWidth="161.0" text="04:30" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                       <font>
+                                          <Font size="60.0" />
+                                       </font>
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                    <Label fx:id="lblDate" alignment="CENTER" text="November 11, 2018" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="98.0">
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                    <Label fx:id="lblDay" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="113.0" text="Saturday" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="10.0">
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                    <Label fx:id="lblSeconds" alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="16.0" text="59" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                    <Separator prefHeight="0.0" prefWidth="181.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0" />
+                                    <CustomTextField fx:id="txtSearch" promptText="Search" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="605.0" prefWidth="765.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" layoutX="73.0" layoutY="77.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <StackPane layoutX="14.0" layoutY="29.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <GridPane layoutX="14.0" prefHeight="54.0" prefWidth="467.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="6.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label text="Source Branch:" GridPane.columnIndex="1" GridPane.columnSpan="2">
+                                                         <GridPane.margin>
+                                                            <Insets />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Destination Branch:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                                         <GridPane.margin>
+                                                            <Insets />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtField00" GridPane.columnIndex="4" GridPane.columnSpan="3" />
+                                                      <CustomTextField fx:id="txtField01" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                                                   </children>
+                                                </GridPane>
+                                                <TabPane fx:id="tabPane" layoutY="65.0" prefHeight="188.0" prefWidth="807.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+                                                <GridPane layoutX="607.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="23.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label text="Division:">
+                                                         <GridPane.margin>
+                                                            <Insets left="30.0" />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font></Label>
+                                                      <CheckBox fx:id="chk00" mnemonicParsing="false" text="Log Query" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font></CheckBox>
+                                                      <MenuButton fx:id="chkDivision" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                                                        <items>
+                                                            <CheckMenuItem fx:id="chkMobile" mnemonicParsing="false" text="Mobile Phone" />
+                                                            <CheckMenuItem fx:id="chkMotor" mnemonicParsing="false" text="Motorcycle" />
+                                                            <CheckMenuItem fx:id="chkAuto" mnemonicParsing="false" text="Auto Group" />
+                                                            <CheckMenuItem fx:id="chkHospitality" mnemonicParsing="false" text="Hospitality" />
+                                                        </items>
+                                                      </MenuButton>
+                                                   </children>
+                                                </GridPane>
+                                                <GridPane layoutX="444.0" layoutY="249.0" prefHeight="22.0" prefWidth="363.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="23.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="40.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label text="Table Name:" GridPane.columnSpan="2">
+                                                         <GridPane.margin>
+                                                            <Insets left="30.0" />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtField03" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="3" />
+                                                   </children>
+                                                </GridPane>
+                                                <GridPane prefHeight="22.0" prefWidth="447.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label text="Query Result:" GridPane.columnIndex="1" GridPane.columnSpan="2">
+                                                         <GridPane.margin>
+                                                            <Insets />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lblResult" text="Query Ok 2 Rows in Set" GridPane.columnIndex="4" GridPane.columnSpan="2">
+                                                         <GridPane.margin>
+                                                            <Insets />
+                                                         </GridPane.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="807.0">
+                                 <children>
+                                    <StackPane layoutY="8.0" prefHeight="256.0" prefWidth="807.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TableView fx:id="tblResult" onKeyPressed="#SQL_Grab" onMouseClicked="#TableClick" prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/Table.css" />
+                                       </children></StackPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+         <bottom>
+            <StackPane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="lblStatus" alignment="CENTER" text="Processing 1 of 10" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="14.0" layoutY="5.0" text="Welcome" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="lblUser" layoutX="95.0" layoutY="5.0" prefHeight="17.0" prefWidth="942.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <GridPane prefHeight="30.0" prefWidth="266.0" AnchorPane.rightAnchor="1.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Length:" />
+                              <Label fx:id="lblLength" GridPane.columnIndex="1" />
+                              <Label text="Lines:" GridPane.columnIndex="2" />
+                              <Label fx:id="lblLines" GridPane.columnIndex="3" />
+                              <Label text="Words:" GridPane.columnIndex="4" />
+                              <Label fx:id="lblWords" GridPane.columnIndex="5" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
