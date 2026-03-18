@@ -1,7 +1,7 @@
 package ph.com.guanzongroup.querymanager.views;
 
-import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
-import com.sun.javafx.scene.control.skin.TabPaneSkin;
+//import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
+//import com.sun.javafx.scene.control.skin.TabPaneSkin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,6 +29,10 @@ import javafx.stage.FileChooser;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 
 public class Utilities {
     UndoManager undo = new UndoManager(); 
@@ -235,16 +239,24 @@ public class Utilities {
         return stringBuffer.toString();
     }
     
-     public static void closeCurrentTab(TabPane tabPane) {
-        TabPaneBehavior behavior = getBehavior(tabPane);
-           if(behavior.canCloseTab(tabPane.getSelectionModel().getSelectedItem())) {
-               behavior.closeTab(tabPane.getSelectionModel().getSelectedItem());}
-    }
+// kalyptus - 2026.03.18 06:58pm
+// replaced the following 2 functions with the function below
+//    public static void closeCurrentTab(TabPane tabPane) {
+//        TabPaneBehavior behavior = getBehavior(tabPane);
+//           if(behavior.canCloseTab(tabPane.getSelectionModel().getSelectedItem())) {
+//               behavior.closeTab(tabPane.getSelectionModel().getSelectedItem());}
+//    }
+//    
+//    private static TabPaneBehavior getBehavior(TabPane tabPane) {
+//        return ((TabPaneSkin) tabPane.getSkin()).getBehavior();
+//    }
     
-    private static TabPaneBehavior getBehavior(TabPane tabPane) {
-        return ((TabPaneSkin) tabPane.getSkin()).getBehavior();
+    public static void closeCurrentTab(TabPane tabPane) {
+        Tab current = tabPane.getSelectionModel().getSelectedItem();
+        if (current != null && current.isClosable()) {
+            tabPane.getTabs().remove(current);
+        }
     }
-    
     
     public static ButtonType ShowYesNoCancel(String fsHeader, String fsTitle, String fsMessage){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

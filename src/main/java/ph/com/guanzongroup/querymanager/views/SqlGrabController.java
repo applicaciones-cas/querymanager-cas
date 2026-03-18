@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.guanzon.appdriver.base.CommonUtils;
+import org.guanzon.appdriver.base.GRiderCAS;
 
 public class SqlGrabController implements Initializable {
 
@@ -42,10 +43,10 @@ public class SqlGrabController implements Initializable {
         psValue=lsValue;
     }
     
-    public void setGRider(GRider foGRider){
+    public void setGRider(GRiderCAS foGRider){
     this.poGRider = foGRider;}
     
-    private static GRider poGRider;
+    private static GRiderCAS poGRider;
     public final static String pxeModuleName = "SqlGrab.fxml";
     private static String psValue= "";
     final MenuItem lsCopied = new MenuItem("Copied to clipboard");

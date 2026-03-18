@@ -9,10 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import org.guanzon.appdriver.base.CommonUtils;
+import org.guanzon.appdriver.base.GRiderCAS;
 
 public class HelpController implements Initializable {
     
-    private GRider poGRider;
+    private GRiderCAS poGRider;
 
     private Button btnOk;
     @FXML
@@ -27,7 +28,7 @@ public class HelpController implements Initializable {
    
     }
     
-     public void setGRider(GRider foGRider){
+     public void setGRider(GRiderCAS foGRider){
         this.poGRider = foGRider;
     }
 

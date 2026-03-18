@@ -18,11 +18,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.guanzon.appdriver.agent.ShowMessageFX;
+import org.guanzon.appdriver.base.GRiderCAS;
 
 
 public class QueryManagerFxV2 extends Application {
     
-    public static GRider poGRider;
+    public static GRiderCAS poGRider;
     public final static String pxeMainFormTitle = "Queryy ManagerFx Fx V 2.0";
     public final static String pxeMainForm = "MainInterface.fxml";
     public final static String pxeStageIcon = "org/rmj/querymngr/images/GFx.png";
@@ -94,7 +96,7 @@ public class QueryManagerFxV2 extends Application {
         });
     }
     
-    public void setGRider(GRider foGRider){
+    public void setGRider(GRiderCAS foGRider){
         this.poGRider = foGRider;
     }
     

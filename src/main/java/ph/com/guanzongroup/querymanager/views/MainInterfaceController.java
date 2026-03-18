@@ -78,7 +78,9 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import org.guanzon.appdriver.agent.ShowMessageFX;
 import org.guanzon.appdriver.base.CommonUtils;
+import org.guanzon.appdriver.base.GRiderCAS;
 import org.guanzon.appdriver.base.MiscUtil;
+import org.guanzon.appdriver.base.SQLUtil;
 import ph.com.guanzongroup.querymanager.cas.base.GQuery;
 
 public class MainInterfaceController implements Initializable {
@@ -136,7 +138,7 @@ public class MainInterfaceController implements Initializable {
     Node horizontalPane;
     public AnchorPane acTiltleBar;
     private GQuery p_oTrans;
-    private GRider poGRider;
+    private GRiderCAS poGRider;
     private double xOffset = 0; 
     private double yOffset = 0;
     private String psOldRecord;
@@ -168,65 +170,69 @@ public class MainInterfaceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(poGRider == null){
-            ShowMessageFX.Warning("GhostRider Application not set..", pxeModuleName, "Please inform MIS department.");
-            System.exit(0);
+        try {
+            if(poGRider == null){
+                ShowMessageFX.Warning("GhostRider Application not set..", pxeModuleName, "Please inform MIS department.");
+                System.exit(0);
+            }
+            
+            p_oTrans = new GQuery();
+            p_oTrans.setGRiderX(poGRider);
+            System.out.println(poGRider.Encrypt(poGRider.getUserID(), "sysmgr"));
+            //p_oTrans.setConfig("/config/queryfx", "GGC_ISysDBF");
+            
+            vertiCalPane = splPane.getItems().get(1);
+            splPane.setDividerPosition(0, 0.2055);
+            
+            horizontalPane = splPane.getItems().get(1);
+            splHorizontal.setDividerPosition(0 ,0.7600);
+            
+            btnExcecute.setOnAction(this::cmdButton_Click);
+            btnClose.setOnAction(this::cmdButton_Click);
+            btnMinimize.setOnAction(this::cmdButton_Click);
+            btnClear.setOnAction(this::cmdButton_Click);
+            btnUser.setOnAction(this::cmdButton_Click);
+            btnNewEditor.setOnAction(this::cmdButton_Click);
+            btnDatabase.setOnAction(this::cmdButton_Click);
+            btnClearCurrent.setOnAction(this::cmdButton_Click);
+            tabPane.setOnMouseClicked(this::tab_Click);
+            
+            btnToggle.setOnAction(this::toggleButton_Click);
+            btnRestoreDown.setOnAction(this::toggleButton_Click);
+            
+            chkMobile.setOnAction(this::menuItem_Click);
+            chkMotor.setOnAction(this::menuItem_Click);
+            chkAuto.setOnAction(this::menuItem_Click);
+            chkHospitality.setOnAction(this::menuItem_Click);
+            mnuSaveAs.setOnAction(this::menuItem_Click);
+            mnuOpen.setOnAction(this::menuItem_Click);
+            mnuNewEditor.setOnAction(this::menuItem_Click);
+            mnuCloseTab.setOnAction(this::menuItem_Click);
+            mnuAbout.setOnAction(this::menuItem_Click);
+            mnuSave.setOnAction(this::menuItem_Click);
+            mnuExit.setOnAction(this::menuItem_Click);
+            
+            txtField00.focusedProperty().addListener(txtField_Focus);
+            txtField01.focusedProperty().addListener(txtField_Focus);
+            txtField03.focusedProperty().addListener(txtField_Focus);
+            
+            txtField00.setOnKeyPressed(this::txtField_KeyPressed);
+            txtField01.setOnKeyPressed(this::txtField_KeyPressed);
+            txtField03.setOnKeyPressed(this::txtField_KeyPressed);
+            
+            tblResult.setColumnResizePolicy((param) -> true );
+            Platform.runLater(() -> customResize(tblResult));
+            
+            txtSearch.setLeft(new ImageView(search));
+            txtField01.setLeft(new ImageView(search));
+            clearFields();
+            loadTransaction();
+            NewTab();
+            getTime();
+            pbLoaded = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(MainInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        p_oTrans = new GQuery();
-        p_oTrans.setGRiderX(poGRider);
-        System.out.println(p_oTrans.Encrypt(poGRider.getUserID(), "sysmgr"));
-        //p_oTrans.setConfig("/config/queryfx", "GGC_ISysDBF");
-        
-        vertiCalPane = splPane.getItems().get(1);
-        splPane.setDividerPosition(0, 0.2055);
-        
-        horizontalPane = splPane.getItems().get(1);
-        splHorizontal.setDividerPosition(0 ,0.7600);
-        
-        btnExcecute.setOnAction(this::cmdButton_Click);
-        btnClose.setOnAction(this::cmdButton_Click);
-        btnMinimize.setOnAction(this::cmdButton_Click);
-        btnClear.setOnAction(this::cmdButton_Click);
-        btnUser.setOnAction(this::cmdButton_Click);
-        btnNewEditor.setOnAction(this::cmdButton_Click);
-        btnDatabase.setOnAction(this::cmdButton_Click);
-        btnClearCurrent.setOnAction(this::cmdButton_Click);
-        tabPane.setOnMouseClicked(this::tab_Click);
-        
-        btnToggle.setOnAction(this::toggleButton_Click);
-        btnRestoreDown.setOnAction(this::toggleButton_Click);
-        
-        chkMobile.setOnAction(this::menuItem_Click);
-        chkMotor.setOnAction(this::menuItem_Click);
-        chkAuto.setOnAction(this::menuItem_Click);
-        chkHospitality.setOnAction(this::menuItem_Click);
-        mnuSaveAs.setOnAction(this::menuItem_Click);
-        mnuOpen.setOnAction(this::menuItem_Click);
-        mnuNewEditor.setOnAction(this::menuItem_Click);
-        mnuCloseTab.setOnAction(this::menuItem_Click);
-        mnuAbout.setOnAction(this::menuItem_Click);
-        mnuSave.setOnAction(this::menuItem_Click);
-        mnuExit.setOnAction(this::menuItem_Click);
-       
-        txtField00.focusedProperty().addListener(txtField_Focus);
-        txtField01.focusedProperty().addListener(txtField_Focus);
-        txtField03.focusedProperty().addListener(txtField_Focus);
-        
-        txtField00.setOnKeyPressed(this::txtField_KeyPressed);
-        txtField01.setOnKeyPressed(this::txtField_KeyPressed);
-        txtField03.setOnKeyPressed(this::txtField_KeyPressed);
-        
-        tblResult.setColumnResizePolicy((param) -> true );
-        Platform.runLater(() -> customResize(tblResult));
-        
-        txtSearch.setLeft(new ImageView(search));
-        txtField01.setLeft(new ImageView(search));
-        clearFields();
-        loadTransaction();
-        NewTab();
-        getTime();
-        pbLoaded = true;
         
     }
     
@@ -264,9 +270,10 @@ public class MainInterfaceController implements Initializable {
         
         MainTreeItem.setExpanded(true);
         String lsQuery = "SHOW TABLES";
-        tables= poGRider.executeQuery(lsQuery);
         
         try {
+            tables= poGRider.executeQuery(lsQuery);
+            
             while(tables.next()){
                     TreeItem<String> item = new TreeItem<> (tables.getString(1));
                     MainTreeItem.getChildren().addAll(item);
@@ -347,7 +354,7 @@ public class MainInterfaceController implements Initializable {
         }
     }
     
-    public void setGRider(GRider foGRider){this.poGRider = foGRider;}
+    public void setGRider(GRiderCAS foGRider){this.poGRider = foGRider;}
     
     public void menuItem_Click(ActionEvent event){
         String mnuItem = ((MenuItem)event.getSource()).getId().toLowerCase();
@@ -417,7 +424,8 @@ public class MainInterfaceController implements Initializable {
         TextField txtField = (TextField)event.getSource();        
         int lnIndex = Integer.parseInt(txtField.getId().substring(8, 10));
         String lsValue = txtField.getText();
-            if (event.getCode() == F3 || event.getCode() == ENTER) {
+        if (event.getCode() == F3 || event.getCode() == ENTER) {
+            try{
                 switch (lnIndex){
                     case 0:
                         if(p_oTrans.searchBranch(lsValue, false)){
@@ -442,13 +450,17 @@ public class MainInterfaceController implements Initializable {
                         }   
                         break;
                 }
-            }        
-                if (event.getCode() == DOWN || event.getCode() == ENTER){
-                     CommonUtils.SetNextFocus(txtField);                  
-                }
-                if (event.getCode() == UP){
-                     CommonUtils.SetPreviousFocus(txtField);                 
-                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                ShowMessageFX.Error(e.getMessage(), "Error", null);
+            }
+        }        
+        if (event.getCode() == DOWN || event.getCode() == ENTER){
+             CommonUtils.SetNextFocus(txtField);                  
+        }
+        if (event.getCode() == UP){
+             CommonUtils.SetPreviousFocus(txtField);                 
+        }
     }
     
     public void txtArea_KeyPressed(KeyEvent event){
@@ -751,22 +763,26 @@ public class MainInterfaceController implements Initializable {
     }
     
     private void clearFields() {
-       txtField01.setText("");
-       txtField03.setText("");
-       lblResult.setText("");
-       chkDivision.setText("");
-       p_oTrans.searchDestination("", true);
-       
-       tblResult.getColumns().clear();
-       chkMobile.selectedProperty().setValue(false);
-       chkMotor.selectedProperty().setValue(false);
-       chkAuto.selectedProperty().setValue(false);
-       chkHospitality.selectedProperty().setValue(false);
-       chk00.selectedProperty().setValue(true);
-       
-       for(Tab tab : tabPane.getTabs()){
-            TextArea txtArea = (TextArea) tab.getContent();
-            txtArea.setText("");
+        try {
+            txtField01.setText("");
+            txtField03.setText("");
+            lblResult.setText("");
+            chkDivision.setText("");
+            p_oTrans.searchDestination("", true);
+            
+            tblResult.getColumns().clear();
+            chkMobile.selectedProperty().setValue(false);
+            chkMotor.selectedProperty().setValue(false);
+            chkAuto.selectedProperty().setValue(false);
+            chkHospitality.selectedProperty().setValue(false);
+            chk00.selectedProperty().setValue(true);
+            
+            for(Tab tab : tabPane.getTabs()){
+                TextArea txtArea = (TextArea) tab.getContent();
+                txtArea.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -815,7 +831,9 @@ public class MainInterfaceController implements Initializable {
         int lnIndex = Integer.parseInt(txtField.getId().substring(8, 10));
         String lsValue = txtField.getText();
         if (lsValue == null) return;  
-            if(!nv){ /*Lost Focus*/
+
+        if(!nv){ /*Lost Focus*/
+            try{
                 switch (lnIndex){
                     case 0:
                        if (!txtField.getText().equals(psOldRecord)){
@@ -833,9 +851,14 @@ public class MainInterfaceController implements Initializable {
                     default:
                         ShowMessageFX.Warning(null, pxeModuleName, "Text field with name " + txtField.getId() + " not registered.");
                 }
-            } else
-                txtField.selectAll();
-            };
+            } catch (SQLException ex) {
+                Logger.getLogger(ph.com.guanzongroup.querymanager.views.MainInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } else{
+            txtField.selectAll();
+        }
+    };
 
     @FXML
     private void TableClick(MouseEvent event) {
@@ -879,36 +902,39 @@ public class MainInterfaceController implements Initializable {
     
     private void getTime(){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {            
-        Calendar cal = Calendar.getInstance();
-        int second = cal.get(Calendar.SECOND);
-        
-        Date date;
-        date = poGRider.getServerDate();
-
-        String fmtHourMin = "h:mm";
-        String fmtSeconds = "ss";
-        String fmtCurrentDay = "EEEE";
-        
-        DateFormat dftHourMin = new SimpleDateFormat(fmtHourMin);
-        DateFormat dftSeconds = new SimpleDateFormat(fmtSeconds);
-        DateFormat dftCurrentDay = new SimpleDateFormat(fmtCurrentDay);
-        
-        String formattedTime= dftHourMin.format(date);
-        String formattedSec = dftSeconds.format(date);
-        String formattedDay = dftCurrentDay.format(date);
-        
-        lblTime.setText(formattedTime);
-        lblSeconds.setText(formattedSec);
-        lblDay.setText(formattedDay);
-        lblDate.setText(CommonUtils.xsDateLong(date));
-        
-    }),
-         new KeyFrame(Duration.seconds(1))
-    );
+            try {
+                Calendar cal = Calendar.getInstance();
+                int second = cal.get(Calendar.SECOND);
+                
+                Date date;
+                date = poGRider.getServerDate();
+                
+                String fmtHourMin = "h:mm";
+                String fmtSeconds = "ss";
+                String fmtCurrentDay = "EEEE";
+                
+                DateFormat dftHourMin = new SimpleDateFormat(fmtHourMin);
+                DateFormat dftSeconds = new SimpleDateFormat(fmtSeconds);
+                DateFormat dftCurrentDay = new SimpleDateFormat(fmtCurrentDay);
+                
+                String formattedTime= dftHourMin.format(date);
+                String formattedSec = dftSeconds.format(date);
+                String formattedDay = dftCurrentDay.format(date);
+                
+                lblTime.setText(formattedTime);
+                lblSeconds.setText(formattedSec);
+                lblDay.setText(formattedDay);
+                lblDate.setText(SQLUtil.dateFormat(date, SQLUtil.FORMAT_LONG_DATE));
+            } catch (SQLException ex) {
+                Logger.getLogger(MainInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }),
+             new KeyFrame(Duration.seconds(1))
+        );
         
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
-        }
+    }
 
     @FXML
     private void SQL_Grab(KeyEvent event) throws IOException {

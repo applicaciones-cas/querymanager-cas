@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.guanzon.appdriver.base.CommonUtils;
+import org.guanzon.appdriver.base.GRiderCAS;
 
 public class AboutController implements Initializable {
 
@@ -27,7 +28,7 @@ public class AboutController implements Initializable {
     @FXML
     private Label lblTelephone;
     
-    private GRider poGRider;
+    private GRiderCAS poGRider;
     @FXML
     private Label lblProgramName;
     
@@ -51,6 +52,6 @@ public class AboutController implements Initializable {
         CommonUtils.closeStage(btnExit);
     }
     
-    public void setGRider(GRider foGRider){this.poGRider = foGRider;}
+    public void setGRider(GRiderCAS foGRider){this.poGRider = foGRider;}
     
 }
