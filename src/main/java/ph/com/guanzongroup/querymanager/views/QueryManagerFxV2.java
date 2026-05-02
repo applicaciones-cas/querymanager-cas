@@ -26,8 +26,8 @@ public class QueryManagerFxV2 extends Application {
     
     public static GRiderCAS poGRider;
     public final static String pxeMainFormTitle = "Queryy ManagerFx Fx V 2.0";
-    public final static String pxeMainForm = "MainInterface.fxml";
-    public final static String pxeStageIcon = "org/rmj/querymngr/images/GFx.png";
+    public final static String pxeMainForm = "/ph/com/guanzongroup/querymanager/cas/views/MainInterface.fxml";
+    public final static String pxeStageIcon = "/ph/com/guanzongroup/querymanager/cas/images/GFx.png";
     final KeyCombination ctrlT = new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN);
     final KeyCombination ALTL = new KeyCodeCombination(KeyCode.L, KeyCombination.ALT_ANY);
     private double xOffset = 0;
