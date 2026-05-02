@@ -13,15 +13,15 @@ public class LetMeIn {
     public static void main (String args[]){
         try {
             String lsProdctID = "gRider";
-            String lsUserIDxx = "M001111122";
+            String lsUserIDxx = "M001200037";
             
             String path;
             
             if(System.getProperty("os.name").toLowerCase().contains("win")){
-                path = "D:/GGC_Java_Systems";
+                path = "D:/GGC_Maven_Systems";
             }
             else{
-                path = "/srv/GGC_Java_Systems";
+                path = "/srv/GGC_Maven_Systems";
             }
             
             System.setProperty("sys.default.path.config", path);
