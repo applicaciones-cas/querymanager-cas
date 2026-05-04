@@ -90,6 +90,11 @@
     <dependencies>
         <dependency>
             <groupId>ph.com.guanzongroup</groupId>
+            <artifactId>login</artifactId>
+            <version>0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ph.com.guanzongroup</groupId>
             <artifactId>querymanager-cas-base</artifactId>
             <version>0.2-SNAPSHOT</version>
             <type>jar</type>

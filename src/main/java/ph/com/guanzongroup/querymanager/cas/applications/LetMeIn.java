@@ -25,6 +25,10 @@ public class LetMeIn {
             }
             
             System.setProperty("sys.default.path.config", path);
+//            ph.com.guanzongroup.login.Login login = new ph.com.guanzongroup.login.Login();
+//            login.setProductId("gRider");
+//
+//            Application.launch(login.getClass());
             
             GRiderCAS poGRider = new GRiderCAS(lsProdctID);
             
