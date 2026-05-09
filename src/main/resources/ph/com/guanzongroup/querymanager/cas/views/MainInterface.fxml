@@ -31,7 +31,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="700.0" prefWidth="1024.0" stylesheets="@../styles/CenterScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="700.0" prefWidth="1024.0" stylesheets="@../styles/CenterScreen.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -110,7 +110,7 @@
                               <FontAwesomeIconView glyphName="FOLDER_OPEN" size="15" />
                            </graphic>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
+                      <Menu mnemonicParsing="false" text="Edit" visible="false">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Delete" />
                         </items>
@@ -118,7 +118,7 @@
                               <FontAwesomeIconView glyphName="EDIT" size="15" />
                            </graphic>
                       </Menu>
-                        <Menu mnemonicParsing="false" text="Tools">
+                        <Menu mnemonicParsing="false" text="Tools" visible="false">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Preferences">
                                  <graphic>
