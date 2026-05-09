@@ -1088,6 +1088,7 @@ public class MainInterfaceController implements Initializable {
     }
 
     public void isTabOk() {
+
         if (tabPane.getTabs().size() != 1) {
             if (getTabTitle().getText().contains("Query Editor") && !getSelecTedTextArea().getText().equals("")) {
                 ButtonType lnButton = Utilities.ShowYesNoCancel("The content of this tab has been changed.", pxeModuleName, "Do you want to save changes?");

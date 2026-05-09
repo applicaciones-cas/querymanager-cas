@@ -253,7 +253,7 @@ public class Utilities {
     
     public static void closeCurrentTab(TabPane tabPane) {
         Tab current = tabPane.getSelectionModel().getSelectedItem();
-        if (current != null && current.isClosable()) {
+        if (current != null) {
             tabPane.getTabs().remove(current);
         }
     }
